@@ -143,7 +143,7 @@ $(document).ready(function () {
             
             if (picArray[0] !== "false") {
             
-                var img = '<img src="' + wikiMedia[keys].original.source + '"/>';
+                var img = '<img src="' + picArray[0] + '"/>';
                 div.append(img, head, desc, btn);
                 
             } else {
