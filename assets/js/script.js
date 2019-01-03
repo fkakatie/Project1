@@ -145,10 +145,11 @@ $(document).ready(function () {
             
                 var img = '<img src="' + wikiMedia[keys].original.source + '"/>';
                 div.append(img);
-
-            $('.masonry').prepend(div).masonry('prepended', div);
+                $('.masonry').prepend(div).masonry('prepended', div);
+                
+            };
             
-        })
+        };
 
         // console.log(picArray);
 
