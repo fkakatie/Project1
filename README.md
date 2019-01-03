@@ -1,29 +1,24 @@
-# Project1
-Project 1 using APIS
-PROJECT FOLDER --> Index.html, assets --> JS --> Logic.JS
-# Today in history #
-Do you want to know what happended in history between 1851 and 2018 on any particular day?  
-Then you will want to use this app!
+# Today in History #
+Do you want to know what happended today in history? Or yesterday? Or on your birthday? Enter any date in [Today in History](https://fkakatie.github.io/Project1/) and find out!
 
 ## What this project does ## 
-This app uses several API's to grab history and images 
-API's used:
-Muffinlabs.com provides historical information for the particular date.
-
-Moment.js is used for the calender  
-
+This project's `HTML` and `CSS` framework is setup using [`Materialize`](https://materializecss.com/). Dates are captured and parsed using [`Moment.js`](https://momentjs.com/). Historical events are loaded using the [`MuffinLabs API`](https://history.muffinlabs.com/) and images are loaded using [`MediaWiki's API`](https://www.mediawiki.org/wiki/API:Main_page). These events are loaded to the page using `JQuery` and sorted using [`Masonry`](https://masonry.desandro.com/).  
 
 ## How users can get started with this project ## 
 
-1. **Go to:https://github.com/MorganMaxwell/Project1**.
-    - Go to the calendar icon at the top, click on todays date and click on any day you would like; or you
-      can select the forward arrow or back arrow to move one day back or one day forward.  
-    - Once the day is selected you can view the history of what happened on a year between 1851-2018. 
+1. **Open [Today in History](https://fkakatie.github.io/Project1/)**.
+    - This project will load with historical events from today's date in history. 
+
+2. **Enter a new date**.
+    - Navigate to the calendar icon at the top of the page, select the date, and choose any day you would like.
+    - After selecting "OK", new historical events will load at the top of the page.
+
+3. **Navigate forward or backwards**.
+    - Users can also change the date by selecting the forward arrow to navigate one day in the future or the back arrow to move one day into the past.  
+    - New historical events will load at the top of the page on each click. 
 
 ## Where users can get help with this project ##
-
-Lorem ipsum.
+If you have any questions about this project, initiate a new pull request and leave a comment.
 
 ## Who maintains this project ## 
-
-Lorem ipsum.
+This fork of the project is maintained by @[fkakatie](https://github.com/fkakatie). Thanks for checking it out.
