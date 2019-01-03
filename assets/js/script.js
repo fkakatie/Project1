@@ -139,11 +139,11 @@ $(document).ready(function () {
             var wikiMedia = response.query.pages;
 
             var keys = Object.keys(wikiMedia);
-            picArray.unshift(wikiMedia[keys].original ? wikiMedia[keys].original.source : "false");
+            picArray.unshift(wikiMedia[keys].original ? wikiMedia[keys].original.source : false);
             
-            if (picArray[0] !== "false") {
+            if (picArray[0] !== false) {
             
-                var img = '<img src="' + picArray[0] + '"/>';
+                var img = '<img src="' + wikiMedia[keys].original.source + '"/>';
                 div.append(img, head, desc, btn);
                 
             } else {
@@ -173,8 +173,6 @@ $(document).ready(function () {
 
             dataTerm = div.attr('data-term');
 
-
-
             div.attr('class', 'mason-item');
             dateSpan.text(wikiSearch);
             head.text(dateArray[randomFive[i]]).append(dateSpan);;
@@ -191,10 +189,6 @@ $(document).ready(function () {
             // $('.masonry').prepend(div).masonry('prepended', div);
 
         };
-    };
-
-    function dataPushTwo() {
-
     };
 
     muffinSearch();
