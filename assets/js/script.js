@@ -3,6 +3,12 @@ $(document).ready(function () {
     var dataTerm;
     var randomFive = [];
     
+     var div;
+     var head;
+     var dateSpan;
+     var desc;
+     var btn;
+    
     // setup masonry grid
     var msnry = $('.masonry').masonry({
         columnWidth: '.mason-sizer',
@@ -142,6 +148,8 @@ $(document).ready(function () {
 
             $('.masonry').prepend(div).masonry('prepended', div);
             
+            console.log('something is happening');
+            
         })
 
         console.log(picArray);
@@ -151,11 +159,11 @@ $(document).ready(function () {
     function dataPush() {
         for (var i = 0; i < randomFive.length; i++) {
 
-            var div = $('<div>');
-            var head = $('<h2>');
-            var dateSpan = $('<span class="dateSpan">');
-            var desc = $('<p>');
-            var btn = $('<a class="waves-effect waves-light btn" target="_blank">');
+            div = $('<div>');
+            head = $('<h2>');
+            dateSpan = $('<span class="dateSpan">');
+            desc = $('<p>');
+            btn = $('<a class="waves-effect waves-light btn" target="_blank">');
 
             div.attr('data-term', titleArray[randomFive[i]]);
 
@@ -169,7 +177,7 @@ $(document).ready(function () {
             desc.text(keyArray[randomFive[i]]);
             btn.attr('href', urlArray[randomFive[i]]).text('Learn More');
 
-            imageSearch(dataTerm, div, head, desc, btn);
+            imageSearch(dataTerm);
 
             // var img = '<img src="' + picArray[i] + '"/>';
 
