@@ -140,9 +140,9 @@ $(document).ready(function () {
             div.append(img, head, desc, btn);
             // div.append(head, desc, btn);
 
-            $('.masonry').imagesLoaded( function() {
+//             $('.masonry').imagesLoaded( function() {
               $('.masonry').prepend(div).masonry('prepended', div);
-            });
+//             });
             
         })
 
