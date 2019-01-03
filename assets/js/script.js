@@ -1,6 +1,11 @@
 $(document).ready(function () {
 
     var dataTerm;
+    var div;
+    var head;
+    var desc;
+    var btn;
+    
     var randomFive = [];
     
     // setup masonry grid
@@ -167,7 +172,7 @@ $(document).ready(function () {
             desc.text(keyArray[randomFive[i]]);
             btn.attr('href', urlArray[randomFive[i]]).text('Learn More');
 
-            imageSearch(dataTerm, head, desc, btn);
+            imageSearch(dataTerm);
 
             // var img = '<img src="' + picArray[i] + '"/>';
 
