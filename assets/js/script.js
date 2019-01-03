@@ -141,18 +141,22 @@ $(document).ready(function () {
             var keys = Object.keys(wikiMedia);
             picArray.unshift(wikiMedia[keys].original ? wikiMedia[keys].original.source : "false");
             
-            var img = '<img src="' + wikiMedia[keys].original.source + '"/>';
-
-            div.append(img, head, desc, btn);
-            // div.append(head, desc, btn);
+            if (picArray[0] !== "false") {
+            
+                var img = '<img src="' + wikiMedia[keys].original.source + '"/>';
+                div.append(img, head, desc, btn);
+                
+            } else {
+                
+                div.append(head, desc, btn);
+                
+            }
 
             $('.masonry').prepend(div).masonry('prepended', div);
             
-            console.log('something is happening');
-            
         })
 
-        console.log(picArray);
+        // console.log(picArray);
 
     };
 
