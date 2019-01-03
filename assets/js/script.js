@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+    var dataTerm;
+    var randomFive = [];
     
     // setup masonry grid
     var msnry = $('.masonry').masonry({
@@ -32,6 +35,7 @@ $(document).ready(function () {
         picArray = [];
         titleArray = [];
         urlArray = [];
+        randomFive = [];
     }
 
     // grab userInput from searchbar, and grab data
@@ -40,7 +44,7 @@ $(document).ready(function () {
         wikiSearch = moment(searchDisplay).format('M/D');
 
         clearArrays();
-        wikipedia();
+        muffinSearch();
     };
     // change date 1 day backward
     function backButton() {
@@ -51,7 +55,7 @@ $(document).ready(function () {
         $('#date-search').val(searchDisplay);
 
         clearArrays();
-        wikipedia();
+        muffinSearch();
     };
     // change date 1 day forward
     function nextButton() {
@@ -62,7 +66,7 @@ $(document).ready(function () {
         $('#date-search').val(searchDisplay);
 
         clearArrays();
-        wikipedia();
+        muffinSearch();
     };
 
     var keyArray = [];
@@ -71,7 +75,8 @@ $(document).ready(function () {
     var titleArray = [];
     var urlArray = [];
 
-    function wikipedia() {
+    function muffinSearch() {
+
         $.ajax({
             url: "https://history.muffinlabs.com/date/" + wikiSearch,
             method: "GET",
@@ -87,61 +92,94 @@ $(document).ready(function () {
                 titleArray.push(muffin[i].links[0].title);
                 urlArray.push(muffin[i].links[0].link);
 
-            }
-
-            for (var j = 0; j < 10; j++) {
-
-                var searchKey = titleArray[j].split(" ").join("_").substring(0, 49);
-                var counter = 0;
-
-                $.ajax({
-                    url: "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=" + searchKey,
-                    crossDomain: true,
-                    crossOrigin: true,
-                    method: "GET"
-                }).then(function (response) {
-
-                    var wikiMedia = response.query.pages;
-
-                    counter++;
-                    // console.log(counter);
-                    var keys = Object.keys(wikiMedia);
-                    // console.log(keys);
-                    picArray.push(wikiMedia[keys].original ? wikiMedia[keys].original.source : "#");
-                    // console.log(wikiMedia[keys].original.source);
-
-                })
-
             };
+
+            randomNumber();
 
             dataPush();
            
         });
     };
 
+    function randomNumber() {
+
+        for (var k = 0; k < 5; k++) {
+
+            var randomNum = Math.floor(Math.random() * keyArray.length);
+
+            if (randomFive.indexOf(randomNum) === -1) {
+
+                randomFive.push(randomNum);
+
+            };  
+
+        }
+
+        console.log(randomFive);
+
+    };
+
+    function imageSearch() {  
+
+        dataTerm = dataTerm.split(" ").join("_").substring(0, 49);
+
+        $.ajax({
+            url: "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=" + dataTerm,
+            crossDomain: true,
+            crossOrigin: true,
+            method: "GET"
+        }).then(function (response) {
+
+            var wikiMedia = response.query.pages;
+
+            var keys = Object.keys(wikiMedia);
+            picArray.unshift(wikiMedia[keys].original ? wikiMedia[keys].original.source : "false");
+
+        })
+
+        console.log(picArray);
+
+    };
+
     function dataPush() {
-        for (var i = 0; i < keyArray.length; i++) {
+        for (var i = 0; i < randomFive.length; i++) {
 
             var div = $('<div>');
             var head = $('<h2>');
             var dateSpan = $('<span class="dateSpan">');
             var desc = $('<p>');
-            var img = '<img src="' + picArray[i] + '"/>';
-            var btn = $('<a class="waves-effect waves-light btn" target="_blank">')
+            var btn = $('<a class="waves-effect waves-light btn" target="_blank">');
+
+            div.attr('data-term', titleArray[randomFive[i]]);
+
+            dataTerm = div.attr('data-term');
+
+
 
             div.attr('class', 'mason-item');
             dateSpan.text(wikiSearch);
-            head.text(dateArray[i]).append(dateSpan);;
-            desc.text(keyArray[i]);
-            btn.attr('href', urlArray[i]).text('Learn More');
+            head.text(dateArray[randomFive[i]]).append(dateSpan);;
+            desc.text(keyArray[randomFive[i]]);
+            btn.attr('href', urlArray[randomFive[i]]).text('Learn More');
 
-            div.append(img, head, desc, btn);
+            imageSearch(dataTerm);
+
+            var img = '<img src="' + picArray[i] + '"/>';
+
+            // div.append(img, head, desc, btn);
+            div.append(head, desc, btn);
 
             $('.masonry').prepend(div).masonry('prepended', div);
+
+
         };
     };
 
-    wikipedia();
+    function dataPushTwo() {
+
+    };
+
+    muffinSearch();
 
     // grab data from user, searchbar and buttons
     $('.datepicker-done').on("click", userInput);
