@@ -149,7 +149,7 @@ $(document).ready(function () {
                 
             };
             
-        };
+        });
 
         // console.log(picArray);
 
