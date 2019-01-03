@@ -144,13 +144,7 @@ $(document).ready(function () {
             if (picArray[0] !== false) {
             
                 var img = '<img src="' + wikiMedia[keys].original.source + '"/>';
-                div.append(img, head, desc, btn);
-                
-            } else {
-                
-                div.append(head, desc, btn);
-                
-            }
+                div.append(img);
 
             $('.masonry').prepend(div).masonry('prepended', div);
             
@@ -184,9 +178,9 @@ $(document).ready(function () {
             // var img = '<img src="' + picArray[i] + '"/>';
 
             // div.append(img, head, desc, btn);
-            // // div.append(head, desc, btn);
+            div.append(head, desc, btn);
 
-            // $('.masonry').prepend(div).masonry('prepended', div);
+            $('.masonry').prepend(div).masonry('prepended', div);
 
         };
     };
