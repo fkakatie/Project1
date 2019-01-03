@@ -166,8 +166,8 @@ $(document).ready(function () {
 
             var img = '<img src="' + picArray[i] + '"/>';
 
-            // div.append(img, head, desc, btn);
-            div.append(head, desc, btn);
+            div.append(img, head, desc, btn);
+            // div.append(head, desc, btn);
 
             $('.masonry').prepend(div).masonry('prepended', div);
 
