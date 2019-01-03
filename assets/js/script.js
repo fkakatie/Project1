@@ -140,9 +140,7 @@ $(document).ready(function () {
             div.append(img, head, desc, btn);
             // div.append(head, desc, btn);
 
-//             $('.masonry').imagesLoaded( function() {
-              $('.masonry').prepend(div).masonry('prepended', div);
-//             });
+            $('.masonry').prepend(div).masonry('prepended', div);
             
         })
 
@@ -171,15 +169,14 @@ $(document).ready(function () {
             desc.text(keyArray[randomFive[i]]);
             btn.attr('href', urlArray[randomFive[i]]).text('Learn More');
 
-            imageSearch(dataTerm);
+            imageSearch(dataTerm, div, head, desc, btn);
 
-//             var img = '<img src="' + picArray[i] + '"/>';
+            // var img = '<img src="' + picArray[i] + '"/>';
 
-//             div.append(img, head, desc, btn);
-//             // div.append(head, desc, btn);
+            // div.append(img, head, desc, btn);
+            // // div.append(head, desc, btn);
 
-//             $('.masonry').prepend(div).masonry('prepended', div);
-
+            // $('.masonry').prepend(div).masonry('prepended', div);
 
         };
     };
