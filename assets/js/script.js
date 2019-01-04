@@ -79,12 +79,10 @@ $(document).ready(function () {
     // clear masonry and reset with today's date
     $('#refreshDate').on('click', function() {
 
-        console.log('this works');
-
         $('.mason-item').remove();
+        $('#date-search').val(moment().format("MMMM D"));
 
-        clearArrays();
-        muffinSearch();
+        userInput();
 
     });
 
@@ -129,11 +127,7 @@ $(document).ready(function () {
 
                 randomFive.push(randomNum);
 
-            } else {
-
-                randomNum = Math.floor(Math.random() * keyArray.length);
-
-            };  
+            };
 
         }
 
@@ -160,7 +154,7 @@ $(document).ready(function () {
             
             var img = '<img src="' + wikiMedia[keys].original.source + '"/>';
 
-            div.append(img, head, desc, btn);
+            div.prepend(img);
 
             $('.masonry').prepend(div).masonry('prepended', div);
             
@@ -187,13 +181,14 @@ $(document).ready(function () {
             desc.text(keyArray[randomFive[i]]);
             btn.attr('href', urlArray[randomFive[i]]).text('Learn More');
 
+            div.append(head, desc, btn);
+
             imageSearch(dataTerm);
 
             // var img = '<img src="' + picArray[i] + '"/>';
 
             // div.append(img, head, desc, btn);
-            // div.append(head, desc, btn);
-
+            
             // $('.masonry').prepend(div).masonry('prepended', div);
 
         };
