@@ -51,6 +51,7 @@ $(document).ready(function () {
         clearArrays();
         muffinSearch();
     };
+
     // change date 1 day backward
     function backButton() {
         searchDate = moment(searchDate).subtract(1, 'd');
@@ -62,6 +63,7 @@ $(document).ready(function () {
         clearArrays();
         muffinSearch();
     };
+
     // change date 1 day forward
     function nextButton() {
         searchDate = moment(searchDate).add(1, 'd');
@@ -73,6 +75,18 @@ $(document).ready(function () {
         clearArrays();
         muffinSearch();
     };
+
+    // clear masonry and reset with today's date
+    $('#refreshDate').on('click', function() {
+
+        console.log('this works');
+
+        $('.mason-item').remove();
+
+        clearArrays();
+        muffinSearch();
+
+    });
 
     var keyArray = [];
     var dateArray = [];
@@ -100,7 +114,6 @@ $(document).ready(function () {
             };
 
             randomNumber();
-
             dataPush();
            
         });
@@ -108,7 +121,7 @@ $(document).ready(function () {
 
     function randomNumber() {
 
-        for (var k = 0; k < 5; k++) {
+        for (var k = 0; randomFive.length < 5; k++) {
 
             var randomNum = Math.floor(Math.random() * keyArray.length);
 
@@ -148,11 +161,10 @@ $(document).ready(function () {
             var img = '<img src="' + wikiMedia[keys].original.source + '"/>';
 
             div.append(img, head, desc, btn);
-            // div.append(head, desc, btn);
 
             $('.masonry').prepend(div).masonry('prepended', div);
             
-        })
+        });
 
     };
 
@@ -193,7 +205,5 @@ $(document).ready(function () {
     $('.datepicker-done').on("click", userInput);
     $('#backButton').on('click', backButton);
     $('#nextButton').on('click', nextButton);
-
-    // reset button
 
 });
