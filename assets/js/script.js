@@ -116,6 +116,10 @@ $(document).ready(function () {
 
                 randomFive.push(randomNum);
 
+            } else {
+
+                randomNum = Math.floor(Math.random() * keyArray.length);
+
             };  
 
         }
@@ -138,6 +142,7 @@ $(document).ready(function () {
             var wikiMedia = response.query.pages;
 
             var keys = Object.keys(wikiMedia);
+
             picArray.unshift(wikiMedia[keys].original ? wikiMedia[keys].original.source : "false");
             
             var img = '<img src="' + wikiMedia[keys].original.source + '"/>';
@@ -149,18 +154,16 @@ $(document).ready(function () {
             
         })
 
-        console.log(picArray);
-
     };
 
     function dataPush() {
         for (var i = 0; i < randomFive.length; i++) {
 
-            var div = $('<div>');
-            var head = $('<h2>');
+            div = $('<div>');
+            head = $('<h2>');
             var dateSpan = $('<span class="dateSpan">');
-            var desc = $('<p>');
-            var btn = $('<a class="waves-effect waves-light btn" target="_blank">');
+            desc = $('<p>');
+            btn = $('<a class="waves-effect waves-light btn" target="_blank">');
 
             div.attr('data-term', titleArray[randomFive[i]]);
 
