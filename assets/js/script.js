@@ -5,7 +5,7 @@ $(document).ready(function () {
     var picArray = [];
     var titleArray = [];
     var urlArray = [];
-    var randomFive = [];
+    var randomSix = [];
     
     // these will be the variables we use for the queries
     var searchDate = moment();
@@ -40,7 +40,7 @@ $(document).ready(function () {
         picArray = [];
         titleArray = [];
         urlArray = [];
-        randomFive = [];
+        randomSix = [];
     }
 
     // grab userInput from searchbar, and grab data
@@ -93,19 +93,19 @@ $(document).ready(function () {
 
     function randomNumber() {
 
-        for (var k = 0; randomFive.length < 5; k++) {
+        for (var k = 0; randomSix.length < 6; k++) {
 
             var randomNum = Math.floor(Math.random() * keyArray.length);
 
-            if (randomFive.indexOf(randomNum) === -1) {
+            if (randomSix.indexOf(randomNum) === -1) {
 
-                randomFive.push(randomNum);
+                randomSix.push(randomNum);
 
             };
 
         }
 
-        console.log(randomFive);
+        console.log(randomSix);
 
     };
 
@@ -162,7 +162,7 @@ $(document).ready(function () {
     };
 
     function dataPush() {
-        for (var i = 0; i < randomFive.length; i++) {
+        for (var i = 0; i < randomSix.length; i++) {
 
             div = $('<div>');
             head = $('<h2>');
@@ -170,15 +170,15 @@ $(document).ready(function () {
             desc = $('<p>');
             btn = $('<a class="waves-effect waves-light btn" target="_blank">');
 
-            div.attr('data-term', titleArray[randomFive[i]]);
+            div.attr('data-term', titleArray[randomSix[i]]);
 
             dataTerm = div.attr('data-term');
 
             div.attr('class', 'mason-item');
             dateSpan.text(wikiSearch);
-            head.text(dateArray[randomFive[i]]).append(dateSpan);;
-            desc.text(keyArray[randomFive[i]]);
-            btn.attr('href', urlArray[randomFive[i]]).text('Learn More');
+            head.text(dateArray[randomSix[i]]).append(dateSpan);;
+            desc.text(keyArray[randomSix[i]]);
+            btn.attr('href', urlArray[randomSix[i]]).text('Learn More');
 
             // imageSearch(dataTerm);
 
