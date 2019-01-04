@@ -187,15 +187,13 @@ $(document).ready(function () {
         };
     };
 
-    function dataPushTwo() {
-
-    };
-
     muffinSearch();
 
     // grab data from user, searchbar and buttons
     $('.datepicker-done').on("click", userInput);
     $('#backButton').on('click', backButton);
     $('#nextButton').on('click', nextButton);
+
+    // reset button
 
 });
