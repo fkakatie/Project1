@@ -1,13 +1,17 @@
 $(document).ready(function () {
-
-    var dataTerm;
-    var div;
-    var head;
-    var desc;
-    var btn;
     
+    var keyArray = [];
+    var dateArray = [];
+    var picArray = [];
+    var titleArray = [];
+    var urlArray = [];
     var randomFive = [];
     
+    // these will be the variables we use for the queries
+    var searchDate = moment();
+    var wikiSearch = moment(searchDate).format("M/D");
+    var searchDisplay = moment(searchDate).format("MMMM D");
+
     // setup masonry grid
     var msnry = $('.masonry').masonry({
         columnWidth: '.mason-sizer',
@@ -16,6 +20,7 @@ $(document).ready(function () {
         percentPosition: true
     });
 
+    // setup imagesLoaded (still buggy)
     msnry.imagesLoaded().progress( function() {
         msnry.masonry();
     });
@@ -24,11 +29,6 @@ $(document).ready(function () {
     $('.datepicker').datepicker({
         format: 'mmmm d',
     });
-
-    // this will be the variable we use for the queries
-    var searchDate = moment();
-    var wikiSearch = moment(searchDate).format("M/D");
-    var searchDisplay = moment(searchDate).format("MMMM D");
 
     // post current date to page on load
     $('#date-search').val(searchDisplay);
@@ -86,11 +86,28 @@ $(document).ready(function () {
 
     });
 
-    var keyArray = [];
-    var dateArray = [];
-    var picArray = [];
-    var titleArray = [];
-    var urlArray = [];
+    // grab data from user, searchbar and buttons
+    $('.datepicker-done').on("click", userInput);
+    $('#backButton').on('click', backButton);
+    $('#nextButton').on('click', nextButton);
+
+    function randomNumber() {
+
+        for (var k = 0; randomFive.length < 5; k++) {
+
+            var randomNum = Math.floor(Math.random() * keyArray.length);
+
+            if (randomFive.indexOf(randomNum) === -1) {
+
+                randomFive.push(randomNum);
+
+            };
+
+        }
+
+        console.log(randomFive);
+
+    };
 
     function muffinSearch() {
 
@@ -117,24 +134,6 @@ $(document).ready(function () {
         });
     };
 
-    function randomNumber() {
-
-        for (var k = 0; randomFive.length < 5; k++) {
-
-            var randomNum = Math.floor(Math.random() * keyArray.length);
-
-            if (randomFive.indexOf(randomNum) === -1) {
-
-                randomFive.push(randomNum);
-
-            };
-
-        }
-
-        console.log(randomFive);
-
-    };
-
     function imageSearch() {  
 
         dataTerm = dataTerm.split(" ").join("_").substring(0, 49);
@@ -154,7 +153,7 @@ $(document).ready(function () {
             
             var img = '<img src="' + wikiMedia[keys].original.source + '"/>';
 
-            div.prepend(img);
+            div.append(img, head, desc, btn);
 
             $('.masonry').prepend(div).masonry('prepended', div);
             
@@ -181,24 +180,18 @@ $(document).ready(function () {
             desc.text(keyArray[randomFive[i]]);
             btn.attr('href', urlArray[randomFive[i]]).text('Learn More');
 
-            div.append(head, desc, btn);
-
-            imageSearch(dataTerm);
+            // imageSearch(dataTerm);
 
             // var img = '<img src="' + picArray[i] + '"/>';
 
             // div.append(img, head, desc, btn);
-            
-            // $('.masonry').prepend(div).masonry('prepended', div);
+            div.append(head, desc, btn);
+
+            $('.masonry').prepend(div).masonry('prepended', div);
 
         };
     };
 
     muffinSearch();
-
-    // grab data from user, searchbar and buttons
-    $('.datepicker-done').on("click", userInput);
-    $('#backButton').on('click', backButton);
-    $('#nextButton').on('click', nextButton);
 
 });
