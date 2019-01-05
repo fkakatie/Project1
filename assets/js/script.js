@@ -13,17 +13,23 @@ $(document).ready(function () {
     var searchDisplay = moment(searchDate).format("MMMM D");
 
     // setup masonry grid
-    var msnry = $('.masonry').masonry({
+    $('.masonry').masonry({
         columnWidth: '.mason-sizer',
         itemSelector: '.mason-item',
         gutter: 15,
-        percentPosition: true
+        percentPosition: true,
+        transitionDuration: 0
     });
 
     // setup imagesLoaded (still buggy)
-    msnry.imagesLoaded().progress( function() {
-        msnry.masonry();
+    $('.masonry').imagesLoaded().progress( function() {
+        $('.masonry').masonry('layout');
     });
+
+    // super sketchy way to reload the dom
+    setInterval(function(){ 
+        $('.masonry').masonry();    
+    }, 100);
 
     // setup materialize date picker
     $('.datepicker').datepicker({
@@ -93,17 +99,17 @@ $(document).ready(function () {
 
     function randomNumber() {
 
-        for (var k = 0; randomSix.length < 6; k++) {
+        // for (var k = 0; k < 6; k++) {
 
             var randomNum = Math.floor(Math.random() * keyArray.length);
 
-            if (randomSix.indexOf(randomNum) === -1) {
+            // if (randomSix.indexOf(randomNum) === -1) {
 
                 randomSix.push(randomNum);
 
-            };
+            // };
 
-        }
+        // }
 
         console.log(randomSix);
 
@@ -129,50 +135,51 @@ $(document).ready(function () {
             };
 
             randomNumber();
-            dataPush();
+
+            imageSearch();
            
         });
     };
 
     function imageSearch() {  
 
-        dataTerm = dataTerm.split(" ").join("_").substring(0, 49);
+        for (var j = 0; j < randomSix.length; j++) {
 
-        $.ajax({
-            url: "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=" + dataTerm,
-            crossDomain: true,
-            crossOrigin: true,
-            method: "GET"
-        }).then(function (response) {
+            var dataTerm = titleArray[randomSix[j]].split(" ").join("_").substring(0, 49);
 
-            var wikiMedia = response.query.pages;
+            $.ajax({
+                url: "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=" + dataTerm,
+                crossDomain: true,
+                crossOrigin: true,
+                method: "GET"
+            }).then(function (response) {
 
-            var keys = Object.keys(wikiMedia);
+                    var wikiMedia = response.query.pages;
 
-            picArray.unshift(wikiMedia[keys].original ? wikiMedia[keys].original.source : "false");
-            
-            var img = '<img src="' + wikiMedia[keys].original.source + '"/>';
+                    var keys = Object.keys(wikiMedia);
 
-            div.append(img, head, desc, btn);
+                    picArray.push(wikiMedia[keys].original ? wikiMedia[keys].original.source : "false");
 
-            $('.masonry').prepend(div).masonry('prepended', div);
-            
-        });
+                dataPush();
+                
+            });
+
+        };
 
     };
 
     function dataPush() {
         for (var i = 0; i < randomSix.length; i++) {
 
-            div = $('<div>');
-            head = $('<h2>');
+            var div = $('<div>');
+            var head = $('<h2>');
             var dateSpan = $('<span class="dateSpan">');
-            desc = $('<p>');
-            btn = $('<a class="waves-effect waves-light btn" target="_blank">');
+            var desc = $('<p>');
+            var btn = $('<a class="waves-effect waves-light btn" target="_blank">');
 
             div.attr('data-term', titleArray[randomSix[i]]);
 
-            dataTerm = div.attr('data-term');
+            console.log('dataPush run: ' + i);
 
             div.attr('class', 'mason-item');
             dateSpan.text(wikiSearch);
@@ -180,12 +187,17 @@ $(document).ready(function () {
             desc.text(keyArray[randomSix[i]]);
             btn.attr('href', urlArray[randomSix[i]]).text('Learn More');
 
-            // imageSearch(dataTerm);
+            if (picArray[i] !== "false") {
 
-            // var img = '<img src="' + picArray[i] + '"/>';
+                var img = '<img src="' + picArray[i] + '"/>';
 
-            // div.append(img, head, desc, btn);
-            div.append(head, desc, btn);
+                div.append(img, head, desc, btn);
+
+            } else {
+
+                div.append(head, desc, btn);
+
+            }
 
             $('.masonry').prepend(div).masonry('prepended', div);
 
