@@ -56,6 +56,7 @@ $(document).ready(function () {
 
         clearArrays();
         muffinSearch();
+
     };
 
     // change date 1 day backward
@@ -68,6 +69,7 @@ $(document).ready(function () {
 
         clearArrays();
         muffinSearch();
+
     };
 
     // change date 1 day forward
@@ -80,6 +82,7 @@ $(document).ready(function () {
 
         clearArrays();
         muffinSearch();
+
     };
 
     // clear masonry and reset with today's date
@@ -99,7 +102,7 @@ $(document).ready(function () {
 
     function randomNumber() {
 
-        for (var k = 0; k < 1; k++) {
+        for (var k = 0; randomSix.length < 6; k++) {
 
             var randomNum = Math.floor(Math.random() * keyArray.length);
 
@@ -111,11 +114,13 @@ $(document).ready(function () {
 
         }
 
-        console.log(randomSix);
+        // console.log(randomSix);
 
     };
 
     function muffinSearch() {
+
+        console.log(wikiSearch);
 
         $.ajax({
             url: "https://history.muffinlabs.com/date/" + wikiSearch,
@@ -136,7 +141,9 @@ $(document).ready(function () {
 
             randomNumber();
 
-            imageSearch();
+            // imageSearch();
+
+            dataPush();
            
         });
     };
@@ -178,8 +185,6 @@ $(document).ready(function () {
             var btn = $('<a class="waves-effect waves-light btn" target="_blank">');
 
             div.attr('data-term', titleArray[randomSix[i]]);
-
-            console.log('dataPush run: ' + i);
 
             div.attr('class', 'mason-item');
             dateSpan.text(wikiSearch);
