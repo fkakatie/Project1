@@ -102,7 +102,7 @@ $(document).ready(function () {
 
     function randomNumber() {
 
-        for (var k = 0; randomSix.length < 6; k++) {
+        for (var k = 0; randomSix.length < 4; k++) {
 
             var randomNum = Math.floor(Math.random() * keyArray.length);
 
