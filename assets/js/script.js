@@ -99,17 +99,17 @@ $(document).ready(function () {
 
     function randomNumber() {
 
-        // for (var k = 0; k < 6; k++) {
+        for (var k = 0; k < 1; k++) {
 
             var randomNum = Math.floor(Math.random() * keyArray.length);
 
-            // if (randomSix.indexOf(randomNum) === -1) {
+            if (randomSix.indexOf(randomNum) === -1) {
 
                 randomSix.push(randomNum);
 
-            // };
+            };
 
-        // }
+        }
 
         console.log(randomSix);
 
@@ -187,7 +187,7 @@ $(document).ready(function () {
             desc.text(keyArray[randomSix[i]]);
             btn.attr('href', urlArray[randomSix[i]]).text('Learn More');
 
-            if (picArray[i] !== "false") {
+            if (picArray[i] !== "false" && picArray[i] !== undefined) {
 
                 var img = '<img src="' + picArray[i] + '"/>';
 
