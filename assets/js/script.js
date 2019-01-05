@@ -29,7 +29,7 @@ $(document).ready(function () {
     // super sketchy way to reload the dom
     setInterval(function(){ 
         $('.masonry').masonry();    
-    }, 100);
+    }, 200);
 
     // setup materialize date picker
     $('.datepicker').datepicker({
