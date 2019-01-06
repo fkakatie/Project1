@@ -21,4 +21,4 @@ This project's `HTML` and `CSS` framework is setup using [`Materialize`](https:/
 If you have any questions about this project, initiate a new pull request and leave a comment.
 
 ## Who maintains this project ## 
-This fork of the project is maintained by @[fkakatie](https://github.com/fkakatie). Thanks for checking it out.
+This project was created by @[gudolph](https://github.com/gudolph), @[MorganMaxwell](https://github.com/MorganMaxwell), @[cforward5674](https://github.com/cforward5674), and @[fkakatie](https://github.com/fkakatie). This fork is maintained by @[fkakatie](https://github.com/fkakatie). Thanks for checking it out.
