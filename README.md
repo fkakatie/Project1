@@ -1,12 +1,12 @@
 # Today in History #
-Do you want to know what happended today in history? Or yesterday? Or on your birthday? Enter any date in [Today in History](https://fkakatie.github.io/Project1/) and find out! :date:
+Do you want to know what happended today in history? Or yesterday? Or on your birthday? Enter any date in [Today in History](https://fkakatie.github.io/today-in-history/) and find out! :date:
 
 ## What this project does ## 
 This project's `HTML` and `CSS` framework is setup using [`Materialize`](https://materializecss.com/). Dates are captured and parsed using [`Moment.js`](https://momentjs.com/). Historical events are loaded using the [`MuffinLabs API`](https://history.muffinlabs.com/). These events are loaded to the page using `JQuery` and arranged using [`Masonry`](https://masonry.desandro.com/).  
 
 ## How users can get started with this project ## 
 
-1. **Open [Today in History](https://fkakatie.github.io/Project1/)**.
+1. **Open [Today in History](https://fkakatie.github.io/today-in-history/)**.
     - This project will load with historical events from today's date in history. 
 
 2. **Enter a new date**.
