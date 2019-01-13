@@ -18,7 +18,7 @@ This project's `HTML` and `CSS` framework is setup using [`Materialize`](https:/
     - New historical events will load at the top of the page on each click. 
 
 ## Where users can get help with this project ##
-If you have any questions about this project, initiate a new pull request and leave a comment.
+If you have any questions about this project, visit my portfolio and [send me a message](https://fkakatie.github.io/responsive-portfolio/contact.html).
 
 ## Who maintains this project ## 
 This project was created by @[gudolph](https://github.com/gudolph), @[MorganMaxwell](https://github.com/MorganMaxwell), @[cforward5674](https://github.com/cforward5674), and @[fkakatie](https://github.com/fkakatie). This fork is maintained by @[fkakatie](https://github.com/fkakatie). Thanks for checking it out.
